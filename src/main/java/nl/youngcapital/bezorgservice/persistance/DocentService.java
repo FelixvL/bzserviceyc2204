@@ -1,4 +1,4 @@
-package nl.youngcapital.bezorgservice.persitance;
+package nl.youngcapital.bezorgservice.persistance;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.bezorgservice.domein.Docent;
-import nl.youngcapital.bezorgservice.persitance.DocentService;
+import nl.youngcapital.bezorgservice.persistance.DocentService;
 
 @RestController
 public class DocentEndpoint {
