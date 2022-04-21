@@ -37,4 +37,6 @@ public class BestellingEndpoint {
     public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
         return bestellingService.vindBestellingById(bezorgerid);
     }
+    
+    //@PostMapping("/")
 }
