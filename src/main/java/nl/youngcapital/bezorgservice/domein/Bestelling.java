@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,9 +22,11 @@ public class Bestelling {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
-	
 	LocalDateTime tijdstip;
 	int status;
+        
+        @ManyToOne
+        Klant klant;
 	
 	public long getId() {
 		return id;
@@ -43,6 +46,16 @@ public class Bestelling {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+        public Klant getKlant() {
+            return klant;
+        }
+
+        public void setKlant(Klant klant) {
+            this.klant = klant;
+        }
+        
+        
 	
 	
 }
