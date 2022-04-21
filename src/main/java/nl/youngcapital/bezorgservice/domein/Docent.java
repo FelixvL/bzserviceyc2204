@@ -17,7 +17,7 @@ public class Docent {
 	String probeersel;
 	
 	@OneToMany
-	List<Bestelling> bestelling;
+	List<Bestelling> bestellingen;
 
 	public long getId() {
 		return id;
@@ -35,12 +35,12 @@ public class Docent {
 		this.probeersel = probeersel;
 	}
 
-	public List<Bestelling> getBestelling() {
-		return bestelling;
+	public List<Bestelling> getBestellingen() {
+		return bestellingen;
 	}
 
-	public void setBestelling(List<Bestelling> bestelling) {
-		this.bestelling = bestelling;
+	public void setBestellingen(List<Bestelling> bestellingen) {
+		this.bestellingen = bestellingen;
 	}
 	
 	
