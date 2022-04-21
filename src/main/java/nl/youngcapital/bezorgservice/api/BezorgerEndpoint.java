@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package nl.youngcapital.bezorgservice.api;
 
-/**
- *
- * @author kuipe
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import nl.youngcapital.bezorgservice.persistance.BezorgerService;
+import nl.youngcapital.bezorgservice.persistance.DocentService;
+
+@RestController
 public class BezorgerEndpoint {
+	@Autowired
+	BezorgerService bs;
+	
     
 }
