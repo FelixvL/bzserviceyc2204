@@ -1,9 +1,13 @@
 package nl.youngcapital.bezorgservice.domein;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Restaurant {
@@ -16,6 +20,14 @@ public class Restaurant {
 	String telefoonnummer;
 	String rekeningnummer;
 	String openingstijden;
+	
+	@ManyToMany
+	List<Bezorger> bezorgers;
+	
+	// Voegt een bezorger toe aan lijst bezorgers die bij het restaurant horen
+	public void addbezorger(Bezorger b) {
+		this.bezorgers.add(b);
+	}
 	
 	public long getId() {
 		return id;
@@ -53,4 +65,13 @@ public class Restaurant {
 	public void setOpeningstijden(String openingstijden) {
 		this.openingstijden = openingstijden;
 	}
+
+	public List<Bezorger> getBezorgers() {
+		return bezorgers;
+	}
+
+	public void setBezorgers(List<Bezorger> bezorgers) {
+		this.bezorgers = bezorgers;
+	}
+	
 }

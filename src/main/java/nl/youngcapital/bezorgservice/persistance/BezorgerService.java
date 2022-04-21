@@ -4,14 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.youngcapital.bezorgservice.domein.Bezorger;
+
 @Service
 public class BezorgerService {
 	
 	@Autowired
-	BezorgerRepository rr;
+	BezorgerRepository br;
 	
 	public void testBezorger() {
-		rr.save(new Bezorger());
+		br.save(new Bezorger());
 	}
 
+	public void opslaan(Bezorger b) {
+		br.save(b);
+	}
+	
+	public Iterable<Bezorger> geefBezorgers(){
+		return br.findAll();
+	}
+	
+	public Bezorger vindBezorgerById(long bezorgerid) {
+		Bezorger gevonden = br.findById(bezorgerid).get();
+		return gevonden;
+	}
 }
