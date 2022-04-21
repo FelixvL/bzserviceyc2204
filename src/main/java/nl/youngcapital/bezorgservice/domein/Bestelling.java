@@ -46,6 +46,16 @@ public class Bestelling {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+        public Klant getKlant() {
+            return klant;
+        }
+
+        public void setKlant(Klant klant) {
+            this.klant = klant;
+        }
+        
+        
 	
 	
 }

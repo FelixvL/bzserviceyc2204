@@ -5,6 +5,7 @@
 package nl.youngcapital.bezorgservice.persistance;
 
 import nl.youngcapital.bezorgservice.domein.Bestelling;
+import nl.youngcapital.bezorgservice.domein.Klant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,22 @@ public class BestellingService {
     @Autowired
     BestellingRepository bestellingRepository;
     
-    public void opslaanBestelling(Bestelling b) {
-        bestellingRepository.save(b);
+    @Autowired
+    KlantRepository ks;
+    
+    public void opslaanBestelling(Bestelling b, long klantid) 
+    {
+        Bestelling tmpBestelling = bestellingRepository.save(b);
+        Klant tmpKlant = geefKlant(klantid);
+        tmpBestelling.setKlant(tmpKlant);
+        
+        bestellingRepository.save(tmpBestelling);
+    }
+    
+    public Klant geefKlant(long id)
+    {
+        Klant klant = ks.findById(id).get();
+        return klant;
     }
     
     public Iterable<Bestelling> geefBestellingen(){
@@ -30,4 +45,6 @@ public class BestellingService {
         Bestelling gevonden = bestellingRepository.findById(bid).get();
         return gevonden;
     }
+    
+    
 }

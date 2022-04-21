@@ -24,9 +24,9 @@ public class BestellingEndpoint {
     @Autowired
     BestellingService bestellingService;
             
-    @PostMapping("/nieuwebestelling")
-        public void voegbestellingtoe(@RequestBody Bestelling b){
-            bestellingService.opslaanBestelling(b);
+    @PostMapping("/nieuwebestelling/{klantid}")
+        public void voegbestellingtoe(@RequestBody Bestelling b, @PathVariable("klantid")int id){
+            bestellingService.opslaanBestelling(b, id);
         }
     @GetMapping("/geefallebestellingen")
             public Iterable GeefAlleBestellingen(){
