@@ -23,6 +23,13 @@ public class KlantService
     {
         return kr.findAll();
     }
+    
+    public String hoi()
+    {
+        System.out.println("hoi hoi");
+        return "3";
+        
+    }
             
            
     
