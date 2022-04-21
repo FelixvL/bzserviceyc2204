@@ -15,6 +15,6 @@ import nl.youngcapital.bezorgservice.domein.Bestelling;
  * @author yifongau
  */
 @Component
-public class BestellingRepository extends CrudRepository<Bestelling, Long> { {
+public interface BestellingRepository extends CrudRepository<Bestelling, Long>  {
     
 }
