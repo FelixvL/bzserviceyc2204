@@ -1,13 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package nl.youngcapital.bezorgservice.persistance;
 
-/**
- *
- * @author kuipe
- */
-public class KlantService {
+import nl.youngcapital.bezorgservice.domein.Klant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class KlantService 
+{
+    @Autowired
+    KlantRepository kr;
+    
+    public void addKlant(Klant k)
+    {
+        Klant klant = k;
+        kr.save(klant);
+        
+    }
+    
+    public Iterable<Klant> getKlanten()
+    {
+        return kr.findAll();
+    }
+            
+           
     
 }
