@@ -36,4 +36,9 @@ public class DocentEndpoint {
 	public Iterable<Docent> geefAlleDocenten(){
 		return ds.geefAlleDocenten();
 	}
+	@GetMapping("addBestelling/{docentid}/{bestellingid}")
+	public void addBestelling(@PathVariable int docentid, @PathVariable int bestellingid) {
+		ds.addBestelling(docentid, bestellingid);
+	}
+	
 }
