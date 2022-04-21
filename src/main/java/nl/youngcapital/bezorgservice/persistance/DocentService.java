@@ -14,4 +14,15 @@ public class DocentService {
 	public void testFunctie() {
 		dr.save(new Docent());
 	}
+	
+	public Iterable<Docent> geefAlleDocenten(){
+		return dr.findAll();
+	}
+	public Docent geefDocent(long id) {
+		Docent docent = dr.findById(id).get();
+		return docent;
+	}
+	public void saveDocent(Docent docent) {
+		dr.save(docent);
+	}
 }
