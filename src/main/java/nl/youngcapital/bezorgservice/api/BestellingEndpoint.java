@@ -38,5 +38,11 @@ public class BestellingEndpoint {
         return bestellingService.vindBestellingById(bezorgerid);
     }
     
-    //@PostMapping("/")
+    @PostMapping("/addbestelling/{klantid}")
+    public void addBestelling(@RequestBody Bestelling b)
+    {
+        
+            
+    }
+    
 }
