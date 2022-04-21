@@ -1,9 +1,12 @@
 package nl.youngcapital.bezorgservice.domein;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Docent {
@@ -12,6 +15,9 @@ public class Docent {
 	private long id;
 	
 	String probeersel;
+	
+	@OneToMany
+	List<Bestelling> bestelling;
 
 	public long getId() {
 		return id;
@@ -28,6 +34,16 @@ public class Docent {
 	public void setProbeersel(String probeersel) {
 		this.probeersel = probeersel;
 	}
+
+	public List<Bestelling> getBestelling() {
+		return bestelling;
+	}
+
+	public void setBestelling(List<Bestelling> bestelling) {
+		this.bestelling = bestelling;
+	}
+	
+	
 	
 	
 }
