@@ -8,6 +8,7 @@ public class BezorgserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BezorgserviceApplication.class, args);
+		
 	}
 
 }
