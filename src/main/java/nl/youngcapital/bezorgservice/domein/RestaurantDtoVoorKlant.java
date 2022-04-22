@@ -1,6 +1,11 @@
 package nl.youngcapital.bezorgservice.domein;
 
 public class RestaurantDtoVoorKlant {
+	long id;
+	public long getId() {
+		return id;
+	}
+
 	String naam;
 	String adres;
 	String telefoonnummer;
@@ -22,7 +27,7 @@ public class RestaurantDtoVoorKlant {
 		return openingstijden;
 	}
 
-	public RestaurantDtoVoorKlant(String naam, 
+	public RestaurantDtoVoorKlant(long id, String naam, 
 			String adres,
 			String telefoonnummer,
 			String openingstijden) {
