@@ -1,5 +1,8 @@
 package nl.youngcapital.bezorgservice.api;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.bezorgservice.domein.Bezorger;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
+import nl.youngcapital.bezorgservice.domein.RestaurantDtoVoorKlant;
 import nl.youngcapital.bezorgservice.persistance.BezorgerService;
 import nl.youngcapital.bezorgservice.persistance.RestaurantService;
 
@@ -33,6 +37,18 @@ public class RestaurantEndpoint {
 	@GetMapping("/toonrestaurants") 
 	public Iterable<Restaurant> toonrestaurants(){
 		return rs.geefRestaurants();
+	}
+	
+	@GetMapping("/toonrestaurants/voorklant") 
+	public List<RestaurantDtoVoorKlant> toonrestaurantsvoorklant(){
+		List <Restaurant> tmprestaurant = rs.geefRestaurants();
+		List <RestaurantDtoVoorKlant> restdtolist = new LinkedList <RestaurantDtoVoorKlant>() ;
+		for(Restaurant r : tmprestaurant) {
+			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+			restdtolist.add(tmprestdto);
+		
+		}
+		return restdtolist;
 	}
 
 	@GetMapping("/voegbezorgertoe/{bezorgerid}/{restaurantid}")

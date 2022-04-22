@@ -1,5 +1,7 @@
 package nl.youngcapital.bezorgservice.persistance;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class RestaurantService {
 		rr.save(b);
 	}
 	
-	public Iterable<Restaurant> geefRestaurants(){
+	public List<Restaurant> geefRestaurants(){
 		return rr.findAll();
 	}
 	
