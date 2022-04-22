@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Restaurant {
@@ -24,9 +26,24 @@ public class Restaurant {
 	@ManyToMany
 	List<Bezorger> bezorgers;
 	
+	@OneToOne(mappedBy = "restaurant")
+	Menu menu;
+	
+
+
+	public Menu getMenu() {
+		return menu;
+	}
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
 	// Voegt een bezorger toe aan lijst bezorgers die bij het restaurant horen
 	public void addbezorger(Bezorger b) {
 		this.bezorgers.add(b);
+	}
+	//voegt een gerecht toe aan de lijst gerechten
+	public void addbgerechten(Gerecht g) {
+		this.menu.addGerecht(g);
 	}
 	
 	public long getId() {

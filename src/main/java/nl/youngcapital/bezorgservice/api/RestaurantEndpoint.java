@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.bezorgservice.domein.Bezorger;
+import nl.youngcapital.bezorgservice.domein.Gerecht;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
 import nl.youngcapital.bezorgservice.domein.RestaurantDtoVoorKlant;
 import nl.youngcapital.bezorgservice.persistance.BezorgerService;
@@ -57,5 +58,10 @@ public class RestaurantEndpoint {
 		Bezorger b = bs.vindBezorgerById(bezorgerid);
 		r.addbezorger(b);
 		rs.opslaan(r);
+	}
+	
+	@PostMapping("/gerechttoevoegen")
+	public void voegGerrechttoe(@RequestBody Gerecht g, @RequestBody Restaurant r) {
+		rs.vindRestaurantById(r.getId()).addbgerechten(g);
 	}
 }
