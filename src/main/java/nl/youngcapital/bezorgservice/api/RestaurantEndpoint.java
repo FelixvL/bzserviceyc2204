@@ -45,7 +45,7 @@ public class RestaurantEndpoint {
 		List <Restaurant> tmprestaurant = rs.geefRestaurants();
 		List <RestaurantDtoVoorKlant> restdtolist = new LinkedList <RestaurantDtoVoorKlant>() ;
 		for(Restaurant r : tmprestaurant) {
-			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
 			restdtolist.add(tmprestdto);
 		
 		}
@@ -63,5 +63,10 @@ public class RestaurantEndpoint {
 	@PostMapping("/gerechttoevoegen")
 	public void voegGerrechttoe(@RequestBody Gerecht g, @RequestBody Restaurant r) {
 		rs.vindRestaurantById(r.getId()).addbgerechten(g);
+	}
+	
+	@GetMapping("/toonmenu/{restaurantid}")
+	public void toonmenu(@PathVariable("restaurantid") int restaurantid) {
+		rs.vindRestaurantById(restaurantid).getMenu().getGerechten();
 	}
 }
