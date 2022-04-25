@@ -54,11 +54,11 @@ public class RestaurantEndpoint {
 		return restdtolist;
 	}
 
-	@GetMapping("/voegbezorgertoe/{bezorgerid}/{restaurantid}")
-	public void voegbezorgertoe(@PathVariable("bezorgerid") int bezorgerid, @PathVariable("restaurantid") int restaurantid){
-		Restaurant r = rs.vindRestaurantById(restaurantid);
+	@PostMapping("voegbezorgertoe")
+	public void voegbezorgertoe(@RequestBody int bezorgerid, @RequestBody Restaurant r){
+		Restaurant vindr = rs.vindRestaurantById(r.getId());
 		Bezorger b = bs.vindBezorgerById(bezorgerid);
-		r.addbezorger(b);
+		vindr.addbezorger(b);
 		rs.opslaan(r);
 	}
 	
