@@ -31,8 +31,10 @@ public class RestaurantEndpoint {
 	}
 	
 	@GetMapping("/restaurantbyid/{id}")
-	public Restaurant restaurantbyid(@PathVariable("id") int restaurantid) {
-		return rs.vindRestaurantById(restaurantid);
+	public RestaurantDtoVoorKlant restaurantbyid(@PathVariable("id") int restaurantid) {
+		Restaurant r =rs.vindRestaurantById(restaurantid);
+		RestaurantDtoVoorKlant rdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+		return rdto;
 	}
 	
 	@GetMapping("/toonrestaurants") 
