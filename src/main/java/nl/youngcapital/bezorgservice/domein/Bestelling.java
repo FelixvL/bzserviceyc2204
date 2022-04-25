@@ -27,6 +27,22 @@ public class Bestelling {
         
         @ManyToOne
         Klant klant;
+        
+        @ManyToOne
+        Bezorger bezorger;
+        
+     
+    public Bezorger getBezorger() {
+			return bezorger;
+		}
+
+		public void setBezorger(Bezorger bezorger) {
+			this.bezorger = bezorger;
+		}
+
+	public void addbezorger(Bezorger b) {
+    	this.bezorger = b;
+    }
 	
 	public long getId() {
 		return id;

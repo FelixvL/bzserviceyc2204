@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.youngcapital.bezorgservice.domein.Bestelling;
 import nl.youngcapital.bezorgservice.domein.Bezorger;
 import nl.youngcapital.bezorgservice.domein.Gerecht;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
 import nl.youngcapital.bezorgservice.domein.RestaurantDtoVoorKlant;
+import nl.youngcapital.bezorgservice.persistance.BestellingService;
 import nl.youngcapital.bezorgservice.persistance.BezorgerService;
 import nl.youngcapital.bezorgservice.persistance.RestaurantService;
 
@@ -24,6 +26,9 @@ public class RestaurantEndpoint {
 	
 	@Autowired
 	BezorgerService bs;
+	
+	@Autowired
+	BestellingService bestelservice;
 	
 	@PostMapping("/restauranttoevoegen")
 	public void voegrestauranttoe(@RequestBody Restaurant r) {
@@ -54,6 +59,16 @@ public class RestaurantEndpoint {
 		return restdtolist;
 	}
 
+	// bezorger toevoegen aan bestelling
+	@PostMapping("/bestelling_voegbezorgertoe")
+	public void kenbezorgertoe(@RequestBody int bezorgerid, @RequestBody Bestelling best){
+		Bestelling foundb = bestelservice.vindBestellingById(best.getId());
+		Bezorger b = bs.vindBezorgerById(bezorgerid);
+		foundb.addbezorger(b);
+		bestelservice.opslaan(best);
+	}
+	
+	// bezorger toevoegen aan restaurant
 	@PostMapping("voegbezorgertoe")
 	public void voegbezorgertoe(@RequestBody int bezorgerid, @RequestBody Restaurant r){
 		Restaurant vindr = rs.vindRestaurantById(r.getId());
