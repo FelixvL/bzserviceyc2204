@@ -22,8 +22,11 @@ public class BestellingService {
     BestellingRepository br;
     
     @Autowired
-    KlantRepository ks;
+    KlantRepository kr;
     
+   
+    
+    // bestelling opslaan met klantid
     public void opslaanBestelling(Bestelling b, long klantid) 
     {
         Bestelling tmpBestelling = br.save(b);
@@ -34,13 +37,14 @@ public class BestellingService {
     }
     
     
+    // bestelling opslaan generiek
     public void opslaan(Bestelling b) {
 		br.save(b);
 	}
     
     public Klant geefKlant(long id)
     {
-        Klant klant = ks.findById(id).get();
+        Klant klant = kr.findById(id).get();
         return klant;
     }
     

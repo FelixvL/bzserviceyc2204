@@ -82,6 +82,13 @@ public class RestaurantEndpoint {
 		rs.vindRestaurantById(r.getId()).addbgerechten(g);
 	}
 	
+	@PostMapping("/gerechttoevoegentd")
+	public void voegGerrechttoetd(@RequestBody Gerecht g, @RequestBody int rid) {
+		rs.vindRestaurantById(rid).addbgerechten(g);
+	}
+	
+
+	
 	@GetMapping("/toonmenu/{restaurantid}")
 	public void toonmenu(@PathVariable("restaurantid") int restaurantid) {
 		rs.vindRestaurantById(restaurantid).getMenu().getGerechten();
