@@ -26,26 +26,26 @@ public class Restaurant {
 	@ManyToMany
 	List<Bezorger> bezorgers;
 	
-	@OneToOne(mappedBy = "restaurant")
-	Menu menu;
+	@OneToOne
+	Gerecht gerecht;
 	
 
 
-	public Menu getMenu() {
-		return menu;
+	public Gerecht getGerecht() {
+		return gerecht;
 	}
-	public void setMenu(Menu menu) {
-		this.menu = menu;
+	public void setGerecht(Gerecht gerecht) {
+		this.gerecht = gerecht;
 	}
 	// Voegt een bezorger toe aan lijst bezorgers die bij het restaurant horen
 	public void addbezorger(Bezorger b) {
 		this.bezorgers.add(b);
 	}
 	//voegt een gerecht toe aan de lijst gerechten
-	public void addbgerechten(Gerecht g) {
-		this.menu.addGerecht(g);
+	public void addGerecht(Gerecht g) {
+		this.gerecht = g;
 	}
-	
+//	
 	public long getId() {
 		return id;
 	}
