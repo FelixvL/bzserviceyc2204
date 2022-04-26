@@ -32,6 +32,7 @@ public class RestaurantDtoVoorKlant {
 			String telefoonnummer,
 			String openingstijden) {
 		
+		this.id=id;
 		this.naam=naam;
 		this.adres=adres;
 		this.telefoonnummer=telefoonnummer;
