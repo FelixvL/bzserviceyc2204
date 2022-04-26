@@ -18,6 +18,8 @@ public class Menu {
 	List<Gerecht> gerechten;
 	@OneToOne
 	Restaurant restaurant;
+	
+	//Getters en setters
 	public long getId() {
 		return id;
 	}

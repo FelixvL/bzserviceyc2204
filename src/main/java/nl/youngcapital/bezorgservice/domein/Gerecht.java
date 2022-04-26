@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Gerecht {
@@ -14,6 +15,11 @@ public class Gerecht {
 	String naam;
 	int prijs;
 	String afbeelding;
+	
+	
+	
+	
+	// Getters & setters
 	public long getId() {
 		return id;
 	}
