@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Gerecht {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+        long id;
 	String naam;
 	int prijs;
 	String afbeelding;

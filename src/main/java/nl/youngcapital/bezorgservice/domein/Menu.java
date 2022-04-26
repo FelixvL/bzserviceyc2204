@@ -16,8 +16,8 @@ public class Menu {
     long id;
 	@OneToMany
 	List<Gerecht> gerechten;
-	@OneToOne
-	Restaurant restaurant;
+//	@OneToOne
+//	Restaurant restaurant;
 	
 	//Getters en setters
 	public long getId() {
