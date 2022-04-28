@@ -38,4 +38,10 @@ public class RestaurantService {
             rr.save(r);
             
         }
+
+		public Restaurant toonRestaurantVanGerecht(long gerechtid) {
+			Gerecht g = gr.findById(gerechtid).get();
+			Restaurant r = rr.findByGerechten(g);
+			return r;
+		}
 }
