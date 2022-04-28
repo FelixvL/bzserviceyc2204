@@ -26,16 +26,16 @@ public class Restaurant {
 	@ManyToMany
 	List<Bezorger> bezorgers;
 	
-	@OneToOne
-	Gerecht gerecht;
+	@OneToMany
+	List<Gerecht> gerechten;
 	
 
 
-	public Gerecht getGerecht() {
-		return gerecht;
+	public List<Gerecht> getGerecht() {
+		return gerechten;
 	}
-	public void setGerecht(Gerecht gerecht) {
-		this.gerecht = gerecht;
+	public void setGerechten(List<Gerecht> gerecht) {
+		this.gerechten = gerecht;
 	}
 	// Voegt een bezorger toe aan lijst bezorgers die bij het restaurant horen
 	public void addbezorger(Bezorger b) {
@@ -43,7 +43,7 @@ public class Restaurant {
 	}
 	//voegt een gerecht toe aan de lijst gerechten
 	public void addGerecht(Gerecht g) {
-		this.gerecht = g;
+		this.gerechten.add(g);
 	}
 //	
 	public long getId() {
