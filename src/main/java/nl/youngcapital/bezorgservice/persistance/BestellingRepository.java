@@ -16,5 +16,5 @@ import nl.youngcapital.bezorgservice.domein.Bestelling;
  */
 @Component
 public interface BestellingRepository extends CrudRepository<Bestelling, Long>  {
-    
+   // List<Bestelling> findBestellingByBezorgtijd(int tijd);
 }
