@@ -92,6 +92,13 @@ public class RestaurantEndpoint {
 		rs.abc(rid, g);
                 
 	}
+	
+	@GetMapping("/toonrestaurantvangerecht/{gerechtid}")
+	public Restaurant toonRestaurantVanGerecht(@PathVariable int gerechtid) {
+		return rs.toonRestaurantVanGerecht(gerechtid);
+		
+		//return null;
+	}
 //
 //	
 //
