@@ -1,5 +1,8 @@
 package nl.youngcapital.bezorgservice.api;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,8 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.youngcapital.bezorgservice.domein.Bestelling;
 import nl.youngcapital.bezorgservice.domein.Bezorger;
+import nl.youngcapital.bezorgservice.domein.Gerecht;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
+import nl.youngcapital.bezorgservice.domein.RestaurantDtoVoorKlant;
+import nl.youngcapital.bezorgservice.persistance.BestellingService;
 import nl.youngcapital.bezorgservice.persistance.BezorgerService;
 import nl.youngcapital.bezorgservice.persistance.RestaurantService;
 
@@ -20,26 +27,77 @@ public class RestaurantEndpoint {
 	@Autowired
 	BezorgerService bs;
 	
+	@Autowired
+	BestellingService bestelservice;
+	
 	@PostMapping("/restauranttoevoegen")
 	public void voegrestauranttoe(@RequestBody Restaurant r) {
 		rs.opslaan(r);
 	}
 	
 	@GetMapping("/restaurantbyid/{id}")
-	public Restaurant restaurantbyid(@PathVariable("id") int restaurantid) {
-		return rs.vindRestaurantById(restaurantid);
+	public RestaurantDtoVoorKlant restaurantbyid(@PathVariable("id") int restaurantid) {
+		Restaurant r =rs.vindRestaurantById(restaurantid);
+		RestaurantDtoVoorKlant rdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+		return rdto;
 	}
 	
 	@GetMapping("/toonrestaurants") 
 	public Iterable<Restaurant> toonrestaurants(){
 		return rs.geefRestaurants();
 	}
+	
+	@GetMapping("/toonrestaurants/voorklant") 
+	public List<RestaurantDtoVoorKlant> toonrestaurantsvoorklant(){
+		List <Restaurant> tmprestaurant = rs.geefRestaurants();
+		List <RestaurantDtoVoorKlant> restdtolist = new LinkedList <RestaurantDtoVoorKlant>() ;
+		for(Restaurant r : tmprestaurant) {
+			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+			restdtolist.add(tmprestdto);
+		
+		}
+		return restdtolist;
+	}
 
-	@GetMapping("/voegbezorgertoe/{bezorgerid}/{restaurantid}")
-	public void voegbezorgertoe(@PathVariable("bezorgerid") int bezorgerid, @PathVariable("restaurantid") int restaurantid){
-		Restaurant r = rs.vindRestaurantById(restaurantid);
+	// bezorger toevoegen aan bestelling
+	@PostMapping("/bestelling_voegbezorgertoe")
+	public void kenbezorgertoe(@RequestBody int bezorgerid, @RequestBody Bestelling best){
+		Bestelling foundb = bestelservice.vindBestellingById(best.getId());
 		Bezorger b = bs.vindBezorgerById(bezorgerid);
-		r.addbezorger(b);
+		foundb.addbezorger(b);
+		bestelservice.opslaan(best);
+	}
+	
+	// bezorger toevoegen aan restaurant
+	@PostMapping("voegbezorgertoe")
+	public void voegbezorgertoe(@RequestBody int bezorgerid, @RequestBody Restaurant r){
+		Restaurant vindr = rs.vindRestaurantById(r.getId());
+		Bezorger b = bs.vindBezorgerById(bezorgerid);
+		vindr.addbezorger(b);
 		rs.opslaan(r);
 	}
+	
+//	@PostMapping("/gerechttoevoegen")
+//	public void voegGerrechttoe(@RequestBody Gerecht g, @RequestBody Restaurant r) {
+//		rs.vindRestaurantById(r.getId()).addbgerechten(g);
+//	}
+//	
+//	@PostMapping("/gerechttoevoegentd")
+//	public void voegGerrechttoetd(@RequestBody Gerecht g, @RequestBody int rid) {
+//		rs.vindRestaurantById(rid).addbgerechten(g);
+//	}
+//	
+	@PostMapping("/gerechttoevoegentd/{rid}")
+	public void voegGerrechttoetda(@RequestBody Gerecht g, @PathVariable("rid") int rid) {
+		rs.abc(rid, g);
+                
+	}
+//
+//	
+//
+//	
+//	@GetMapping("/toonmenu/{restaurantid}")
+//	public void toonmenu(@PathVariable("restaurantid") int restaurantid) {
+//		rs.vindRestaurantById(restaurantid).getMenu().getGerechten();
+//	}
 }

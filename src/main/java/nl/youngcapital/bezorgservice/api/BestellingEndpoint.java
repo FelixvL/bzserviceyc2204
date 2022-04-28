@@ -29,7 +29,7 @@ public class BestellingEndpoint {
             bestellingService.opslaanBestelling(b, id);
         }
     @GetMapping("/geefallebestellingen")
-            public Iterable GeefAlleBestellingen(){
+            public Iterable geefAlleBestellingen(){
                 return bestellingService.geefBestellingen();
             }
             
