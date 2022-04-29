@@ -31,7 +31,7 @@ public class Restaurant {
 	
 
 
-	public List<Gerecht> getGerecht() {
+	public List<Gerecht> getGerechten() {
 		return gerechten;
 	}
 	public void setGerechten(List<Gerecht> gerecht) {
