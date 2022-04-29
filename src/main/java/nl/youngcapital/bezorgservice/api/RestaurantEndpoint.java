@@ -77,18 +77,8 @@ public class RestaurantEndpoint {
 		rs.opslaan(r);
 	}
 	
-//	@PostMapping("/gerechttoevoegen")
-//	public void voegGerrechttoe(@RequestBody Gerecht g, @RequestBody Restaurant r) {
-//		rs.vindRestaurantById(r.getId()).addbgerechten(g);
-//	}
-//	
-//	@PostMapping("/gerechttoevoegentd")
-//	public void voegGerrechttoetd(@RequestBody Gerecht g, @RequestBody int rid) {
-//		rs.vindRestaurantById(rid).addbgerechten(g);
-//	}
-//	
-	@PostMapping("/gerechttoevoegentd/{rid}")
-	public void voegGerrechttoetda(@RequestBody Gerecht g, @PathVariable("rid") int rid) {
+	@PostMapping("/gerechttoevoegen/{rid}")
+	public void voegGerrechttoe(@RequestBody Gerecht g, @PathVariable("rid") int rid) {
 		rs.abc(rid, g);
                 
 	}
@@ -99,12 +89,11 @@ public class RestaurantEndpoint {
 		
 		//return null;
 	}
-//
-//	
-//
-//	
-//	@GetMapping("/toonmenu/{restaurantid}")
-//	public void toonmenu(@PathVariable("restaurantid") int restaurantid) {
-//		rs.vindRestaurantById(restaurantid).getMenu().getGerechten();
-//	}
+
+	@GetMapping("/toonmenu/{restaurantid}")
+	public List<Gerecht> toonmenu(@PathVariable("restaurantid") int restaurantid) {
+		List <Gerecht> gerechten = rs.vindRestaurantById(restaurantid).getGerechten();
+		return gerechten;
+	}
+
 }
