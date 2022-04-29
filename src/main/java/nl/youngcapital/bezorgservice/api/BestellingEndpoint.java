@@ -20,29 +20,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BestellingEndpoint {
-    
-    @Autowired
-    BestellingService bestellingService;
-            
-    @PostMapping("/nieuwebestelling/{klantid}")
-        public void voegbestellingtoe(@RequestBody Bestelling b, @PathVariable("klantid")int id){
-            bestellingService.opslaanBestelling(b, id);
-        }
-    @GetMapping("/geefallebestellingen")
-            public Iterable geefAlleBestellingen(){
-                return bestellingService.geefBestellingen();
-            }
-            
-    @GetMapping("/geefbestelling/{bid}")
-    public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
-        return bestellingService.vindBestellingById(bezorgerid);
-    }
-    
-    @PostMapping("/addbestelling/{klantid}")
-    public void addBestelling(@RequestBody Bestelling b)
-    {
-        
-            
-    }
-    
+
+	@Autowired
+	BestellingService bestellingService;
+
+	@PostMapping("/nieuwebestelling/{klantid}")
+	public void voegbestellingtoe(@RequestBody Bestelling b, @PathVariable("klantid")int id){
+		bestellingService.opslaanBestelling(b, id);
+	}
+	@GetMapping("/geefallebestellingen")
+	public Iterable<Bestelling> geefAlleBestellingen(){
+		return bestellingService.geefBestellingen();
+	}
+
+	@GetMapping("/geefbestelling/{bid}")
+	public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
+		return bestellingService.vindBestellingById(bezorgerid);
+	}
+
+	@PostMapping("/addbestelling/{klantid}")
+	public void addBestelling(@RequestBody Bestelling b)
+	{
+
+
+	}
+
 }
