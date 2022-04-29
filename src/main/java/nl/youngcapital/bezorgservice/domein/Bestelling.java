@@ -26,15 +26,6 @@ public class Bestelling {
 	long id;
 	LocalDateTime tijdstip;
 	int status;
-	boolean betaald = false;
-
-	public boolean isBetaald() {
-		return betaald;
-	}
-
-	public void setBetaald(boolean betaald) {
-		this.betaald = betaald;
-	}
 
 	@ManyToOne
 	Klant klant;
@@ -44,10 +35,21 @@ public class Bestelling {
 
 	@OneToMany
 	List<Gerecht> gerechten;
+	
+	@ManyToOne
+	Restaurant restaurant;
 
 	//Misschien in de toekomst prijs implementeren.
 
 	// GETTERS & SETTERS
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 
 	public List<Gerecht> getGerechten() {
 		return gerechten;

@@ -17,6 +17,9 @@ public class RestaurantService {
         
         @Autowired
         GerechtRepository gr;
+        
+        @Autowired
+        BestellingRepository br;
 	
 	public void opslaan(Restaurant b) {
 		rr.save(b);
