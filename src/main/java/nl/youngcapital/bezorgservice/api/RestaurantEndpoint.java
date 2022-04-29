@@ -76,20 +76,19 @@ public class RestaurantEndpoint {
 		vindr.addbezorger(b);
 		rs.opslaan(r);
 	}
-	
+	//gerecht toevoegen aan restaurant met restaurantid rid
 	@PostMapping("/gerechttoevoegen/{rid}")
 	public void voegGerrechttoe(@RequestBody Gerecht g, @PathVariable("rid") int rid) {
-		rs.abc(rid, g);
+		rs.addGerecht(rid, g);
                 
 	}
-	
+	//Restaurant tonen voor bepaalde gerechtid
 	@GetMapping("/toonrestaurantvangerecht/{gerechtid}")
 	public Restaurant toonRestaurantVanGerecht(@PathVariable int gerechtid) {
 		return rs.toonRestaurantVanGerecht(gerechtid);
-		
-		//return null;
 	}
-
+	
+	//alle gerechten van een restaurant tonen
 	@GetMapping("/toonmenu/{restaurantid}")
 	public List<Gerecht> toonmenu(@PathVariable("restaurantid") int restaurantid) {
 		List <Gerecht> gerechten = rs.vindRestaurantById(restaurantid).getGerechten();

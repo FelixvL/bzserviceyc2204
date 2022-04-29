@@ -26,41 +26,50 @@ public class Bestelling {
 	long id;
 	LocalDateTime tijdstip;
 	int status;
-        
-        @ManyToOne
-        Klant klant;
-        
-        @ManyToOne
-        Bezorger bezorger;
-        
-    	@OneToMany
-    	List<Gerecht> gerechten;
-    	
-    	//Misschien in de toekomst prijs implementeren.
-    	
-    	// GETTERS & SETTERS
-    	
-    	public List<Gerecht> getGerechten() {
-			return gerechten;
-		}
+	boolean betaald = false;
 
-		public void setGerechten(List<Gerecht> gerechten) {
-			this.gerechten = gerechten;
-		}
-        
-     
-		public Bezorger getBezorger() {
-			return bezorger;
-		}
+	public boolean isBetaald() {
+		return betaald;
+	}
 
-		public void setBezorger(Bezorger bezorger) {
-			this.bezorger = bezorger;
-		}
+	public void setBetaald(boolean betaald) {
+		this.betaald = betaald;
+	}
+
+	@ManyToOne
+	Klant klant;
+
+	@ManyToOne
+	Bezorger bezorger;
+
+	@OneToMany
+	List<Gerecht> gerechten;
+
+	//Misschien in de toekomst prijs implementeren.
+
+	// GETTERS & SETTERS
+
+	public List<Gerecht> getGerechten() {
+		return gerechten;
+	}
+
+	public void setGerechten(List<Gerecht> gerechten) {
+		this.gerechten = gerechten;
+	}
+
+
+	public Bezorger getBezorger() {
+		return bezorger;
+	}
+
+	public void setBezorger(Bezorger bezorger) {
+		this.bezorger = bezorger;
+	}
 
 	public void addbezorger(Bezorger b) {
-    	this.bezorger = b;
-    }
-	
+		this.bezorger = b;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -80,15 +89,15 @@ public class Bestelling {
 		this.status = status;
 	}
 
-        public Klant getKlant() {
-            return klant;
-        }
+	public Klant getKlant() {
+		return klant;
+	}
 
-        public void setKlant(Klant klant) {
-            this.klant = klant;
-        }
-        
-        
-	
-	
+	public void setKlant(Klant klant) {
+		this.klant = klant;
+	}
+
+
+
+
 }

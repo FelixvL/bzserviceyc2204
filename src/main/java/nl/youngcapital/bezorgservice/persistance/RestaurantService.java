@@ -30,18 +30,18 @@ public class RestaurantService {
 		Restaurant gevonden = rr.findById(restaurantid).get();
 		return gevonden;
 	}
-        public void abc(long id, Gerecht g)
-        {
-            Restaurant r = rr.findById(id).get();
-            Gerecht ge = gr.save(g);
-            r.addGerecht(ge);
-            rr.save(r);
-            
-        }
+	public void addGerecht(long id, Gerecht g)
+	{
+		Restaurant r = rr.findById(id).get();
+		Gerecht ge = gr.save(g);
+		r.addGerecht(ge);
+		rr.save(r);
 
-		public Restaurant toonRestaurantVanGerecht(long gerechtid) {
-			Gerecht g = gr.findById(gerechtid).get();
-			Restaurant r = rr.findByGerechten(g);
-			return r;
-		}
+	}
+
+	public Restaurant toonRestaurantVanGerecht(long gerechtid) {
+		Gerecht g = gr.findById(gerechtid).get();
+		Restaurant r = rr.findByGerechten(g);
+		return r;
+	}
 }
