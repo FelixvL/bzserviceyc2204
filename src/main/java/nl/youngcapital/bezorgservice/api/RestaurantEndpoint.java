@@ -1,5 +1,6 @@
 package nl.youngcapital.bezorgservice.api;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class RestaurantEndpoint {
 	@PostMapping("/gerechttoevoegen/{rid}")
 	public void voegGerrechttoe(@RequestBody Gerecht g, @PathVariable("rid") int rid) {
 		rs.addGerecht(rid, g);
-                
+        
 	}
 	//Restaurant tonen voor bepaalde gerechtid
 	@GetMapping("/toonrestaurantvangerecht/{gerechtid}")
@@ -93,6 +94,22 @@ public class RestaurantEndpoint {
 	public List<Gerecht> toonmenu(@PathVariable("restaurantid") int restaurantid) {
 		List <Gerecht> gerechten = rs.vindRestaurantById(restaurantid).getGerechten();
 		return gerechten;
+	}
+	/**
+	 * toon de bestellingen alle bestellingen een restaurant
+	 * @param restaurantid
+	 * @return
+	 */
+	@GetMapping("/toonresbestellingen/{restaurantid}")
+	public List<Bestelling> toonresbestellingen(@PathVariable("restaurantid") int restaurantid) {
+		List<Bestelling> result = new LinkedList<Bestelling>();
+		Iterable<Bestelling> bestel = bestelservice.geefBestellingen();
+		for (Bestelling b:bestel) {
+			if (b.getRestaurant().getId()==restaurantid) {
+				result.add(b);
+			}
+		}
+		return result;
 	}
 
 }
