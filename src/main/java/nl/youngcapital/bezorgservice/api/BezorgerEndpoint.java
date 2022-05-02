@@ -18,12 +18,12 @@ public class BezorgerEndpoint {
 		return bs.vindBezorgerById(bezorgerid);
 	}
 
-	@GetMapping // Getmapping dus toont alle bezorgers (default mapping: api/bezorgers)
+	@GetMapping 			// Getmapping dus toont alle bezorgers (default mapping: api/bezorgers)
 	public Iterable<Bezorger> toonbezorgers() {
 		return bs.geefBezorgers();
 	}
 
-	@PostMapping // Post is standaard voor toevoegen dus POST naar api/bezorgers is impliciet een niewe maken.
+	@PostMapping 		// Post is standaard voor toevoegen dus POST naar api/bezorgers is impliciet een niewe maken.
 	// als je hier iets returned ziet de gebruiker (postman) de nieuwe toegevoegde Bezorger. Mooi.
 	// niet perse een must maar dan zie je wat ...
 	public Bezorger voegbezorgertoe(@RequestBody Bezorger b) {

@@ -4,9 +4,10 @@
  */
 package nl.youngcapital.bezorgservice.persistance;
 
-import nl.youngcapital.bezorgservice.domein.Gerecht;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
+
+import nl.youngcapital.bezorgservice.domein.Gerecht;
 
 /**
  *
