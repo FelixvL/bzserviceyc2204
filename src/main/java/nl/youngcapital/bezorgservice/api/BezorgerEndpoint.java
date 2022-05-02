@@ -11,7 +11,7 @@ import nl.youngcapital.bezorgservice.persistance.BezorgerService;
 public class BezorgerEndpoint {
 
 	@Autowired
-	BezorgerService bs;
+	private BezorgerService bs;
 
 	@GetMapping("{id}")  // voegt {id} toe aan api/bezorgers. bv. http://localhost:8080/api/bezorgers/3
 	public Bezorger bezorgerbyid(@PathVariable("id") int bezorgerid) {
@@ -24,7 +24,9 @@ public class BezorgerEndpoint {
 	}
 
 	@PostMapping // Post is standaard voor toevoegen dus POST naar api/bezorgers is impliciet een niewe maken.
-	public void voegbezorgertoe(@RequestBody Bezorger b) {
-		bs.opslaan(b);
+	// als je hier iets returned ziet de gebruiker (postman) de nieuwe toegevoegde Bezorger. Mooi.
+	// niet perse een must maar dan zie je wat ...
+	public Bezorger voegbezorgertoe(@RequestBody Bezorger b) {
+		return bs.opslaan(b);
 	}
 }

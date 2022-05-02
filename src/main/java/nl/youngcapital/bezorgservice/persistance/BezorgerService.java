@@ -15,8 +15,8 @@ public class BezorgerService {
 		br.save(new Bezorger());
 	}
 
-	public void opslaan(Bezorger b) {
-		br.save(b);
+	public Bezorger opslaan(Bezorger b) {
+		return br.save(b);
 	}
 	
 	public Iterable<Bezorger> geefBezorgers(){
