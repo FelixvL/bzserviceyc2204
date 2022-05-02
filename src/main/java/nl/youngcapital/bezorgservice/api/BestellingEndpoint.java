@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,14 +25,28 @@ public class BestellingEndpoint {
 	@Autowired
 	BestellingService bestellingService;
 
-	@PostMapping("/nieuwebestelling/{klantid}")
-	public void voegbestellingtoe(@RequestBody Bestelling b, @PathVariable("klantid")int id){
-		bestellingService.opslaanBestelling(b, id);
+	@PostMapping("/nieuwebestelling/{klantid}/{restaurantid}")
+	public void voegbestellingtoe(@RequestBody Bestelling b, @PathVariable("klantid")long id, @PathVariable("restaurantid")long rid) {
+		bestellingService.opslaanBestelling(b, id, rid);
 	}
+        
+        @PutMapping("voeggerechttoe/{bestellingid}/{gerechtid}")
+        public void voegGerechtToe(@PathVariable("bestellingid") long bid, @PathVariable("gerechtid")long id)
+        {
+            bestellingService.voegGerechtToe(bid, id);
+        }
+        
+                
 	@GetMapping("/geefallebestellingen")
 	public Iterable<Bestelling> geefAlleBestellingen(){
 		return bestellingService.geefBestellingen();
 	}
+        
+        @GetMapping("geefbestellingenvanklant/{kid}")
+        public Iterable<Bestelling> geefBestellingenVanKlant(@PathVariable("kid") long klantid)
+         {
+             return bestellingService.geefBestellingVanKlant(klantid);
+         }
 
 	@GetMapping("/geefbestelling/{bid}")
 	public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
@@ -41,7 +56,7 @@ public class BestellingEndpoint {
 	@PostMapping("/addbestelling/{klantid}")
 	public void addBestelling(@RequestBody Bestelling b)
 	{
-
+           
 
 	}
 

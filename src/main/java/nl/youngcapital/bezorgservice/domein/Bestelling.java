@@ -26,6 +26,8 @@ public class Bestelling {
 	long id;
 	LocalDateTime tijdstip;
 	int status;
+        boolean betaald;
+
 
 	@ManyToOne
 	Klant klant;
@@ -98,7 +100,20 @@ public class Bestelling {
 	public void setKlant(Klant klant) {
 		this.klant = klant;
 	}
+        
+        public void addGerecht(Gerecht g)
+        {
+            gerechten.add(g);
+        }
+        
+        
+        public boolean isBetaald() {
+            return betaald;
+        }
 
+        public void setBetaald(boolean betaald) {
+            this.betaald = betaald;
+        }
 
 
 

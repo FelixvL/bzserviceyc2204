@@ -46,6 +46,7 @@ public class RestaurantEndpoint {
 	@GetMapping("/toonrestaurants") 
 	public Iterable<Restaurant> toonrestaurants(){
 		return rs.geefRestaurants();
+                
 	}
 	
 	@GetMapping("/toonrestaurants/voorklant") 

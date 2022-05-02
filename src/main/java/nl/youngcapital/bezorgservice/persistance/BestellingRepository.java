@@ -4,6 +4,7 @@ package nl.youngcapital.bezorgservice.persistance;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import nl.youngcapital.bezorgservice.domein.Bestelling;
+import nl.youngcapital.bezorgservice.domein.Klant;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,4 +18,6 @@ import nl.youngcapital.bezorgservice.domein.Bestelling;
 @Component
 public interface BestellingRepository extends CrudRepository<Bestelling, Long>  {
    // List<Bestelling> findBestellingByBezorgtijd(int tijd);
+    
+    Iterable<Bestelling> findBestellingByKlant(Klant k);
 }
