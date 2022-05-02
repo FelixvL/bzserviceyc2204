@@ -8,15 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("api/klanten")
 public class KlantEndpoint 
 {
     
     @Autowired
-    KlantService ks;
+    private KlantService ks;
     
     @GetMapping("/hoi")
     public void hoi()
@@ -26,14 +28,14 @@ public class KlantEndpoint
         ks.addKlant(new Klant());
     }
     
-    @PostMapping("/addklant")
+    @PostMapping
     public void addKlant(@RequestBody Klant k)
     {
         ks.addKlant(k);
     }
     
     
-    @GetMapping("/getklanten")
+    @GetMapping
     public Iterable<Klant> getKlanten()
     {
         return ks.getKlanten();
