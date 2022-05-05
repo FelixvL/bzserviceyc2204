@@ -8,6 +8,17 @@ package nl.youngcapital.bezorgservice.domein;
  *
  * @author kuipe
  */
-public class ResultDto {
+public class ResultDto 
+{
+    public boolean result;
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+    
     
 }
