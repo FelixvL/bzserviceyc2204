@@ -60,6 +60,13 @@ public class RestaurantEndpoint {
 		}
 		return restdtolist;
 	}
+	
+	//toon alle bezorgers voor een restaurant
+	@GetMapping("/geefrestaurantbezorgers/{resid}")
+	public List<Bezorger> geefrestaurantbezorgers(@PathVariable int resid) {
+		List<Bezorger> bezorgers=rs.vindRestaurantById(resid).getBezorgers();
+		return bezorgers;
+	}
 
 	// bezorger toevoegen aan bestelling
 	@GetMapping("/bestelling_voegbezorgertoe/{bestid}/{bezid}")
