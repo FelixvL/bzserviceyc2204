@@ -22,5 +22,5 @@ public interface BestellingRepository extends CrudRepository<Bestelling, Long>  
     
     Iterable<Bestelling> findBestellingByKlant(Klant k);
     
-    Iterable<Bestelling> findBestellingByRestaurant(Restaurant r);
+    Iterable<Bestelling> findByRestaurantAndStatusIsNot(Restaurant r, int status);
 }

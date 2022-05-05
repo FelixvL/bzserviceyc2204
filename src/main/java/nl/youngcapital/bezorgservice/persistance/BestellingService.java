@@ -31,6 +31,9 @@ public class BestellingService {
     
     @Autowired
     RestaurantRepository rr;
+    
+    @Autowired
+    BezorgerRepository bzr;
    
     
     // bestelling opslaan met klantid
@@ -81,7 +84,7 @@ public class BestellingService {
      public Iterable<Bestelling> geefBestellingVanRestaurant(long id)
     {
         Restaurant r = rr.findById(id).get();
-        Iterable<Bestelling> gevonden = br.findBestellingByRestaurant(r);
+        Iterable<Bestelling> gevonden = br.findByRestaurantAndStatusIsNot(r, 3);
         return gevonden;
     }
     
@@ -156,10 +159,20 @@ public class BestellingService {
         else
         {
             return false;
-        }
-        
-        
-                
+        }            
+    }
+    
+    public void addBezorgerToBestelling(long bid, long zid)
+    {
+        Bezorger tmpBz = bzr.findById(zid).get();
+        Bestelling tmpb = vindBestellingById(bid);
+        tmpb.addbezorger(tmpBz);
+        br.save(tmpb);
+    }
+    
+    public void removeBestelling(long bid)
+    {
+        br.deleteById(bid);
     }
     
 }
