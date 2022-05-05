@@ -47,17 +47,22 @@ public class BestellingEndpoint {
          {
              return bestellingService.geefBestellingVanKlant(klantid);
          }
+        
+        @GetMapping("geefbestellingenvanres/{kid}")
+        public Iterable<Bestelling> geefBestellingenVanrestaurant(@PathVariable("kid") long restid)
+         {
+             return bestellingService.geefBestellingVanRestaurant(restid);
+         }
+        
+        @PostMapping("setstatus/{bid}")
+        public boolean setStatus(@RequestBody int status, @PathVariable("bid") long bid)
+        {
+            return bestellingService.setStatus(status, bid);
+        }
 
 	@GetMapping("/geefbestelling/{bid}")
 	public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
 		return bestellingService.vindBestellingById(bezorgerid);
-	}
-
-	@PostMapping("/addbestelling/{klantid}")
-	public void addBestelling(@RequestBody Bestelling b)
-	{
-           
-
 	}
 
 }
