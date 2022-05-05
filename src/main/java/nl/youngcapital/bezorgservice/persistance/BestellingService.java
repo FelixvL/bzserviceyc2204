@@ -78,12 +78,74 @@ public class BestellingService {
         return gevonden;
     }
     
+     public Iterable<Bestelling> geefBestellingVanRestaurant(long id)
+    {
+        Restaurant r = rr.findById(id).get();
+        Iterable<Bestelling> gevonden = br.findBestellingByRestaurant(r);
+        return gevonden;
+    }
+    
     public void voegGerechtToe(long bid, long gid)
     {
         Bestelling tmpb = vindBestellingById(bid);
         Gerecht tmpg = gr.findById(gid).get();
         tmpb.addGerecht(tmpg);
         br.save(tmpb);
+    }
+    
+    public boolean setStatus(int status, long bid)
+    {
+        Bestelling tmpb = vindBestellingById(bid);
+        int bestelstatus = tmpb.getStatus();
+        if (status == 1)
+        {
+            if (bestelstatus >=1)
+            {
+                return false;
+            }
+            else
+            {
+                tmpb.setStatus(status);
+                br.save(tmpb);
+                return true;
+            }
+        }
+        else if (status == 2)
+        {
+            if (bestelstatus >=2)
+            {
+                return false;
+            }
+            else
+            {
+                tmpb.setStatus(status);
+                br.save(tmpb);
+                return true;
+            }
+            
+        }
+        else if (status == 3)
+        {
+            if (bestelstatus >=4)
+            {
+                return false;
+                
+            }
+            else
+            {
+                tmpb.setStatus(status);
+                br.save(tmpb);
+                return true;
+            }
+            
+        }
+        else
+        {
+            return false;
+        }
+        
+        
+                
     }
     
 }
