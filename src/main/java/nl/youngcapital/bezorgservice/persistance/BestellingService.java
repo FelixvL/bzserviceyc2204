@@ -81,7 +81,7 @@ public class BestellingService {
      public Iterable<Bestelling> geefBestellingVanRestaurant(long id)
     {
         Restaurant r = rr.findById(id).get();
-        Iterable<Bestelling> gevonden = br.findBestellingByRestaurant(r);
+        Iterable<Bestelling> gevonden = br.findByRestaurantAndStatusIsNot(r, 3);
         return gevonden;
     }
     
