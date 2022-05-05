@@ -22,6 +22,8 @@ public class Restaurant {
 	String telefoonnummer;
 	String rekeningnummer;
 	String openingstijden;
+        String logo;
+        String banner;
 	
 	@ManyToMany
 	List<Bezorger> bezorgers;
