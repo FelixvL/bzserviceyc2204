@@ -139,6 +139,20 @@ public class BestellingService {
             }
             
         }
+        else if (status == 4)
+        {
+            if (bestelstatus >=1)
+            {
+                return false;
+            }
+            else
+            {
+                tmpb.setStatus(status);
+                br.save(tmpb);
+                return true;
+            }
+        }
+                
         else
         {
             return false;
