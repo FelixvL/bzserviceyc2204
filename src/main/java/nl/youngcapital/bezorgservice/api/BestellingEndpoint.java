@@ -5,6 +5,7 @@
 package nl.youngcapital.bezorgservice.api;
 
 import nl.youngcapital.bezorgservice.domein.Bestelling;
+import nl.youngcapital.bezorgservice.domein.ResultDto;
 import nl.youngcapital.bezorgservice.persistance.BestellingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +56,7 @@ public class BestellingEndpoint {
          }
         
         @PostMapping("setstatus/{bid}/{status}")
-        public boolean setStatus(@PathVariable int status, @PathVariable long bid)
+        public ResultDto setStatus(@PathVariable int status, @PathVariable long bid)
         {
             return bestellingService.setStatus(status, bid);
         }

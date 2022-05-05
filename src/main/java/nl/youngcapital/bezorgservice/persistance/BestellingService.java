@@ -9,6 +9,7 @@ import nl.youngcapital.bezorgservice.domein.Bezorger;
 import nl.youngcapital.bezorgservice.domein.Gerecht;
 import nl.youngcapital.bezorgservice.domein.Klant;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
+import nl.youngcapital.bezorgservice.domein.ResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,34 +97,35 @@ public class BestellingService {
         br.save(tmpb);
     }
     
-    public boolean setStatus(int status, long bid)
+    public ResultDto setStatus(int status, long bid)
     {
         Bestelling tmpb = vindBestellingById(bid);
         int bestelstatus = tmpb.getStatus();
+        ResultDto res = new ResultDto();
         if (status == 1)
         {
             if (bestelstatus >=1)
             {
-                return false;
+                res.setResult(false);
             }
             else
             {
                 tmpb.setStatus(status);
                 br.save(tmpb);
-                return true;
+                res.setResult(true);
             }
         }
         else if (status == 2)
         {
             if (bestelstatus >=2)
             {
-                return false;
+                res.setResult(false);
             }
             else
             {
                 tmpb.setStatus(status);
                 br.save(tmpb);
-                return true;
+                res.setResult(true);
             }
             
         }
@@ -131,14 +133,14 @@ public class BestellingService {
         {
             if (bestelstatus >=4)
             {
-                return false;
+                res.setResult(false);
                 
             }
             else
             {
                 tmpb.setStatus(status);
                 br.save(tmpb);
-                return true;
+                res.setResult(true);
             }
             
         }
@@ -146,20 +148,21 @@ public class BestellingService {
         {
             if (bestelstatus >=1)
             {
-                return false;
+                res.setResult(false);;
             }
             else
             {
                 tmpb.setStatus(status);
                 br.save(tmpb);
-                return true;
+                res.setResult(true);
             }
         }
                 
         else
         {
-            return false;
-        }            
+            res.setResult(false);
+        }
+        return res;
     }
     
     public void addBezorgerToBestelling(long bid, long zid)
