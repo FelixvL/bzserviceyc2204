@@ -62,20 +62,20 @@ public class RestaurantEndpoint {
 	}
 
 	// bezorger toevoegen aan bestelling
-	@PostMapping("/bestelling_voegbezorgertoe")
-	public void kenbezorgertoe(@RequestBody int bezorgerid, @RequestBody Bestelling best){
-		Bestelling foundb = bestelservice.vindBestellingById(best.getId());
-		Bezorger b = bs.vindBezorgerById(bezorgerid);
+	@GetMapping("/bestelling_voegbezorgertoe/{bestid}/{bezid}")
+	public void kenbezorgertoe(@PathVariable int bestid, @PathVariable int bezid){
+		Bestelling foundb = bestelservice.vindBestellingById(bestid);
+		Bezorger b = bs.vindBezorgerById(bezid);
 		foundb.addbezorger(b);
-		bestelservice.opslaan(best);
+		bestelservice.opslaan(foundb);
 	}
 	
 	// bezorger toevoegen aan restaurant
-	@PostMapping("voegbezorgertoe")
-	public void voegbezorgertoe(@RequestBody int bezorgerid, @RequestBody Restaurant r){
-		Restaurant vindr = rs.vindRestaurantById(r.getId());
+	@GetMapping("voegbezorgertoe/{bezorgerid}/{resid}")
+	public void voegbezorgertoe(@PathVariable int bezorgerid, @PathVariable int resid){
+		Restaurant r = rs.vindRestaurantById(resid);
 		Bezorger b = bs.vindBezorgerById(bezorgerid);
-		vindr.addbezorger(b);
+		r.addbezorger(b);
 		rs.opslaan(r);
 	}
 	//gerecht toevoegen aan restaurant met restaurantid rid
@@ -97,7 +97,7 @@ public class RestaurantEndpoint {
 		return gerechten;
 	}
 	/**
-	 * toon de bestellingen alle bestellingen een restaurant
+	 * toon  alle bestellingen van een restaurant
 	 * @param restaurantid
 	 * @return
 	 */
