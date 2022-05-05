@@ -113,7 +113,7 @@ public class RestaurantEndpoint {
 		List<Bestelling> result = new LinkedList<Bestelling>();
 		Iterable<Bestelling> bestel = bestelservice.geefBestellingen();
 		for (Bestelling b:bestel) {
-			if (b.getRestaurant().getId()==restaurantid) {
+			if (b.getRestaurant().getId()==restaurantid &&b.getStatus()!=3) {
 				result.add(b);
 			}
 		}
