@@ -60,6 +60,13 @@ public class RestaurantEndpoint {
 		}
 		return restdtolist;
 	}
+	
+	//toon alle bezorgers voor een restaurant
+	@GetMapping("/geefrestaurantbezorgers/{resid}")
+	public List<Bezorger> geefrestaurantbezorgers(@PathVariable int resid) {
+		List<Bezorger> bezorgers=rs.vindRestaurantById(resid).getBezorgers();
+		return bezorgers;
+	}
 
 	// bezorger toevoegen aan bestelling
 	@GetMapping("/bestelling_voegbezorgertoe/{bestid}/{bezid}")
@@ -106,7 +113,7 @@ public class RestaurantEndpoint {
 		List<Bestelling> result = new LinkedList<Bestelling>();
 		Iterable<Bestelling> bestel = bestelservice.geefBestellingen();
 		for (Bestelling b:bestel) {
-			if (b.getRestaurant().getId()==restaurantid) {
+			if (b.getRestaurant().getId()==restaurantid &&b.getStatus()!=3) {
 				result.add(b);
 			}
 		}
