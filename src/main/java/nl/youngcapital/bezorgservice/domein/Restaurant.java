@@ -92,5 +92,21 @@ public class Restaurant {
 	public void setBezorgers(List<Bezorger> bezorgers) {
 		this.bezorgers = bezorgers;
 	}
+
+        public String getLogo() {
+            return logo;
+        }
+
+        public void setLogo(String logo) {
+            this.logo = logo;
+        }
+
+        public String getBanner() {
+            return banner;
+        }
+
+        public void setBanner(String banner) {
+            this.banner = banner;
+        }
 	
 }

@@ -54,8 +54,8 @@ public class BestellingEndpoint {
              return bestellingService.geefBestellingVanRestaurant(restid);
          }
         
-        @PostMapping("setstatus/{bid}")
-        public boolean setStatus(@RequestBody int status, @PathVariable("bid") long bid)
+        @PostMapping("setstatus/{bid}/{status}")
+        public boolean setStatus(@PathVariable int status, @PathVariable long bid)
         {
             return bestellingService.setStatus(status, bid);
         }
