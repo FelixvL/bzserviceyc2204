@@ -68,14 +68,6 @@ public class RestaurantEndpoint {
 		return bezorgers;
 	}
 
-	// bezorger toevoegen aan bestelling
-	@GetMapping("/bestelling_voegbezorgertoe/{bestid}/{bezid}")
-	public void kenbezorgertoe(@PathVariable int bestid, @PathVariable int bezid){
-		Bestelling foundb = bestelservice.vindBestellingById(bestid);
-		Bezorger b = bs.vindBezorgerById(bezid);
-		foundb.addbezorger(b);
-		bestelservice.opslaan(foundb);
-	}
 	
 	// bezorger toevoegen aan restaurant
 	@GetMapping("voegbezorgertoe/{bezorgerid}/{resid}")

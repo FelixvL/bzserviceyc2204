@@ -48,8 +48,8 @@ public class BestellingEndpoint {
              return bestellingService.geefBestellingVanKlant(klantid);
          }
         
-        @GetMapping("geefbestellingenvanres/{kid}")
-        public Iterable<Bestelling> geefBestellingenVanrestaurant(@PathVariable("kid") long restid)
+        @GetMapping("geefbestellingenvanres/{rid}")
+        public Iterable<Bestelling> geefBestellingenVanrestaurant(@PathVariable("rid") long restid)
          {
              return bestellingService.geefBestellingVanRestaurant(restid);
          }
@@ -64,5 +64,17 @@ public class BestellingEndpoint {
 	public Bestelling bestellingbyid(@PathVariable("bid") int bezorgerid) {
 		return bestellingService.vindBestellingById(bezorgerid);
 	}
+        
+        @PutMapping("bezorgeraanbestelling/{bid}/{zid}")
+        public void addBezorgerToBestelling(@PathVariable long bid, @PathVariable long zid)
+        {
+            bestellingService.addBezorgerToBestelling(bid, zid);
+        }
+        
+        @PostMapping ("removebestelling/{bid}")
+        public void removeBestelling(@PathVariable long bid)
+        {
+            bestellingService.removeBestelling(bid);
+        }
 
 }
