@@ -47,7 +47,12 @@ public class Restaurant {
 	public void addGerecht(Gerecht g) {
 		this.gerechten.add(g);
 	}
-//	
+	
+	// verwijderd gerecht van de lijst gerechten
+	public void deleteGerecht(Gerecht g) {
+		this.gerechten.remove(g);
+	}
+	
 	public long getId() {
 		return id;
 	}

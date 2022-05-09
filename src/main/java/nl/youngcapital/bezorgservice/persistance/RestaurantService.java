@@ -43,10 +43,12 @@ public class RestaurantService {
 	}
 	
 	
-	// remove gerecht, maar feitelijk 
-	// haalt dit een has-relatie tussen een restaurant en het gerecht weg
+	// remove gerecht uit gerecht
 	public void removeGerecht(long gid) {
-		gr.deleteById(gid);
+		Gerecht g = gr.findById(gid).get();
+		Restaurant r = rr.findByGerechten(g);
+		r.deleteGerecht(g);
+		rr.save(r);
 		
 	}
 
