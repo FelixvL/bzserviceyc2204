@@ -43,7 +43,7 @@ public class RestaurantService {
 	}
 	
 	
-	// remove gerecht uit gerecht
+	// remove gerecht uit restaurant
 	public void removeGerecht(long gid) {
 		Gerecht g = gr.findById(gid).get();
 		Restaurant r = rr.findByGerechten(g);
