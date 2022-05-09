@@ -85,8 +85,8 @@ public class RestaurantEndpoint {
 	}
 	
 	// gerecht verwijderen uit restaurantoverzicht met gerechtid gid
-    @PostMapping ("gerechtverwijderen/{rid}/{gid}")
-    public void removeGerecht(@PathVariable long rid, @PathVariable long gid)
+    @PostMapping ("gerechtverwijderen/{gid}")
+    public void removeGerecht(@PathVariable long gid)
     {        	
     	rs.removeGerecht(gid);
     }
