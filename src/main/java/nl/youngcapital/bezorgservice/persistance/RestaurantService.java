@@ -41,10 +41,20 @@ public class RestaurantService {
 		rr.save(r);
 
 	}
+	
+	
+	// remove gerecht, maar feitelijk 
+	// haalt dit een has-relatie tussen een restaurant en het gerecht weg
+	public void removeGerecht(long gid) {
+		gr.deleteById(gid);
+		
+	}
 
 	public Restaurant toonRestaurantVanGerecht(long gerechtid) {
 		Gerecht g = gr.findById(gerechtid).get();
 		Restaurant r = rr.findByGerechten(g);
 		return r;
 	}
+
+	
 }

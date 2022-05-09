@@ -83,6 +83,15 @@ public class RestaurantEndpoint {
 		rs.addGerecht(rid, g);
         
 	}
+	
+	// gerecht verwijderen uit restaurantoverzicht met gerechtid gid
+    @PostMapping ("gerechtverwijderen/{gid}")
+    public void removeGerecht(@PathVariable long gid)
+    {
+        rs.removeGerecht(gid);
+    }
+
+	
 	//Restaurant tonen voor bepaalde gerechtid
 	@GetMapping("/toonrestaurantvangerecht/{gerechtid}")
 	public Restaurant toonRestaurantVanGerecht(@PathVariable int gerechtid) {
