@@ -41,10 +41,22 @@ public class RestaurantService {
 		rr.save(r);
 
 	}
+	
+	
+	// remove gerecht uit restaurant
+	public void removeGerecht(long gid) {
+		Gerecht g = gr.findById(gid).get();
+		Restaurant r = rr.findByGerechten(g);
+		r.deleteGerecht(g);
+		rr.save(r);
+		
+	}
 
 	public Restaurant toonRestaurantVanGerecht(long gerechtid) {
 		Gerecht g = gr.findById(gerechtid).get();
 		Restaurant r = rr.findByGerechten(g);
 		return r;
 	}
+
+	
 }
