@@ -39,7 +39,7 @@ public class RestaurantEndpoint {
 	@GetMapping("/restaurantbyid/{id}")
 	public RestaurantDtoVoorKlant restaurantbyid(@PathVariable("id") int restaurantid) {
 		Restaurant r =rs.vindRestaurantById(restaurantid);
-		RestaurantDtoVoorKlant rdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+		RestaurantDtoVoorKlant rdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden(), r.getBanner());
 		return rdto;
 	}
 	
@@ -54,7 +54,7 @@ public class RestaurantEndpoint {
 		List <Restaurant> tmprestaurant = rs.geefRestaurants();
 		List <RestaurantDtoVoorKlant> restdtolist = new LinkedList <RestaurantDtoVoorKlant>() ;
 		for(Restaurant r : tmprestaurant) {
-			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden());
+			RestaurantDtoVoorKlant tmprestdto = new RestaurantDtoVoorKlant(r.getId(),r.getNaam(), r.getAdres(), r.getTelefoonnummer(), r.getOpeningstijden(), r.getBanner());
 			restdtolist.add(tmprestdto);
 		
 		}
