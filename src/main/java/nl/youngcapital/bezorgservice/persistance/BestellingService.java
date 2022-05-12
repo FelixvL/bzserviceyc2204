@@ -4,6 +4,9 @@
  */
 package nl.youngcapital.bezorgservice.persistance;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import nl.youngcapital.bezorgservice.domein.Bestelling;
 import nl.youngcapital.bezorgservice.domein.Bezorger;
 import nl.youngcapital.bezorgservice.domein.Gerecht;
@@ -93,6 +96,26 @@ public class BestellingService {
          Bezorger b = bzr.findById(id).get();
          Iterable<Bestelling> gevonden = br.findByBezorgerAndStatusIsNot(b, 3);
          return gevonden;
+     }
+     
+      public Iterable<Bestelling> geefDtoBestellingVanBezorger(long id)
+     {
+         List<Bestelling> dtoGevonden = new LinkedList<Bestelling>();
+         Bezorger b = bzr.findById(id).get();
+         Iterable<Bestelling> gevonden = br.findByBezorgerAndStatusIsNot(b, 3);
+         for(Bestelling bes: gevonden)
+         {
+             Bestelling tmpBestelling = bes;
+             Klant tmpk = bes.getKlant();
+             Restaurant rest = bes.getRestaurant();
+             rest.setRekeningnummer("Protected");
+             tmpk.setWachtwoord("Protected");
+             tmpBestelling.setKlant(tmpk);
+             tmpBestelling.setRestaurant(rest);
+             dtoGevonden.add(tmpBestelling);           
+         }
+         
+         return dtoGevonden;
      }
     
     public void voegGerechtToe(long bid, long gid)
