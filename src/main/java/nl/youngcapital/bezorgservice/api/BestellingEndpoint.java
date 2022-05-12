@@ -55,6 +55,12 @@ public class BestellingEndpoint {
              return bestellingService.geefBestellingVanRestaurant(restid);
          }
         
+        @GetMapping ("geefbestellingvanbezorger/{bezid}")
+        public Iterable<Bestelling> geefBestellingenVanBezorger(@PathVariable long bezid)
+        {
+            return bestellingService.geefBestellingVanBezorger(bezid);
+        }
+        
         @PostMapping("setstatus/{bid}/{status}")
         public ResultDto setStatus(@PathVariable int status, @PathVariable long bid)
         {

@@ -4,6 +4,7 @@ package nl.youngcapital.bezorgservice.persistance;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import nl.youngcapital.bezorgservice.domein.Bestelling;
+import nl.youngcapital.bezorgservice.domein.Bezorger;
 import nl.youngcapital.bezorgservice.domein.Klant;
 import nl.youngcapital.bezorgservice.domein.Restaurant;
 
@@ -23,4 +24,5 @@ public interface BestellingRepository extends CrudRepository<Bestelling, Long>  
     Iterable<Bestelling> findBestellingByKlant(Klant k);
     
     Iterable<Bestelling> findByRestaurantAndStatusIsNot(Restaurant r, int status);
+    Iterable<Bestelling> findByBezorgerAndStatusIsNot(Bezorger b, int status);
 }

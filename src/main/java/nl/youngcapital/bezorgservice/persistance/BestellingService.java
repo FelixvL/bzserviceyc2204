@@ -88,6 +88,12 @@ public class BestellingService {
         Iterable<Bestelling> gevonden = br.findByRestaurantAndStatusIsNot(r, 3);
         return gevonden;
     }
+     public Iterable<Bestelling> geefBestellingVanBezorger(long id)
+     {
+         Bezorger b = bzr.findById(id).get();
+         Iterable<Bestelling> gevonden = br.findByBezorgerAndStatusIsNot(b, 3);
+         return gevonden;
+     }
     
     public void voegGerechtToe(long bid, long gid)
     {
